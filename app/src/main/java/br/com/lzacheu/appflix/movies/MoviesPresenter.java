@@ -23,6 +23,6 @@ public class MoviesPresenter implements MoviesContract.Presenter {
 
     @Override
     public void start() {
-
+        moviesView.showLoading(true);
     }
 }

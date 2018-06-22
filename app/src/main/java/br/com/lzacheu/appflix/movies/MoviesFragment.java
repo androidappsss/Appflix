@@ -39,6 +39,13 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        moviesPresenter.start();
+        moviesPresenter.loadMovies();
+    }
+
+    @Override
     public void showLoading(boolean active) {
 
     }
