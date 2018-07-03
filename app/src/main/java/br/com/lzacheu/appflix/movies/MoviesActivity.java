@@ -12,6 +12,8 @@ import br.com.lzacheu.appflix.R;
  */
 public class MoviesActivity extends AppCompatActivity  {
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

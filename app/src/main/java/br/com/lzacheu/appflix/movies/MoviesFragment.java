@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import br.com.lzacheu.appflix.R;
 import br.com.lzacheu.appflix.model.Movie;
 
 /**
@@ -35,7 +36,11 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.movies_fragment, container, false);
+
+        moviesPresenter = new MoviesPresenter(this);
+
+        return rootView;
     }
 
     @Override

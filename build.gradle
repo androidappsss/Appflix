@@ -29,6 +29,12 @@ task clean(type: Delete) {
 ext{
     androidSupportVersion = '27.1.1'
     junitVersion = '4.12'
+    constraintLayoutVersion = '1.1.2'
+
+    gsonVersion = '2.8.2'
+    retrofitVersion = '2.4.0'
+    okhttpVersion = '3.7.0'
+
     mockitoVersion = '2.10.0'
     junitRunnerVersion = '1.0.2'
     espressoVersion = '3.0.2'

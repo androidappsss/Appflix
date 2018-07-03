@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.com.lzacheu.appflix.model.Movie;
 
+import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -17,7 +18,8 @@ import static org.mockito.Mockito.verify;
  */
 public class MoviesPresenterTest {
 
-    private List<Movie> MOVIES_LIST;
+    private static List<Movie> MOVIES_LIST;
+    private static Movie MOVIE;
 
     MoviesContract.Presenter moviesPresenter;
 
@@ -29,7 +31,9 @@ public class MoviesPresenterTest {
         MockitoAnnotations.initMocks(this);
         moviesPresenter = new MoviesPresenter(moviesView);
 
-        MOVIES_LIST = new ArrayList<>(0);
+        MOVIE = new Movie();
+        MOVIES_LIST = new ArrayList<>();
+        MOVIES_LIST.add(MOVIE);
     }
 
     @Test
@@ -40,7 +44,8 @@ public class MoviesPresenterTest {
 
     @Test
     public void shouldLoadMoviesWhenStartPresenter(){
-        moviesPresenter.start();
-        verify(moviesView).showMovies(MOVIES_LIST);
+        moviesPresenter.loadMovies();
+
+        verify(moviesView, only()).showMovies(MOVIES_LIST);
     }
 }
