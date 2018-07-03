@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,11 @@ import br.com.lzacheu.appflix.model.Movie;
  */
 public class MoviesFragment extends Fragment implements MoviesContract.View {
 
+    RecyclerView recyclerView;
+
+
     MoviesContract.Presenter moviesPresenter;
+
 
     public MoviesFragment() {
     }

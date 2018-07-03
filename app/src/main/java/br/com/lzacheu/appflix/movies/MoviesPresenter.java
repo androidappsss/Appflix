@@ -2,9 +2,6 @@ package br.com.lzacheu.appflix.movies;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.lzacheu.appflix.data.DataManager;
 import br.com.lzacheu.appflix.data.network.RemoteCallback;
 import br.com.lzacheu.appflix.data.network.model.MovieResponse;
