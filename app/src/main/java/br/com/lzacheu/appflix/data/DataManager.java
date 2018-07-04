@@ -23,7 +23,7 @@ public class DataManager {
     }
 
     private DataManager(){
-        movieService = NetworkFactory.makeMovieService();
+        movieService = NetworkFactory.getApiService(MovieService.class);
     }
 
     public void getMovies(RemoteCallback<MovieResponse> listener){
