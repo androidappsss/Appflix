@@ -2,11 +2,14 @@ package br.com.lzacheu.appflix.movies;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.lzacheu.appflix.R;
 import br.com.lzacheu.appflix.model.Movie;
 
 /**
@@ -16,26 +19,45 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     private List<Movie> movieList;
 
+    public MoviesAdapter(List<Movie> movieList) {
+        this.movieList = movieList;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View rootView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.movie_adapter, parent, false);
+
+        ViewHolder viewHolder = new ViewHolder(rootView);
+
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.title.setText(movieList.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return movieList.size();
     }
 
-    public static  class ViewHolder extends RecyclerView.ViewHolder{
+    public void addMovies(List<Movie> movies) {
+        movieList.addAll(movies);
+        notifyDataSetChanged();
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView title;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            title = itemView.findViewById(R.id.title);
+
         }
     }
 }

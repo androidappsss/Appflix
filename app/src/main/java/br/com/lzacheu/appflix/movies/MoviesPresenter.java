@@ -23,23 +23,25 @@ public class MoviesPresenter implements MoviesContract.Presenter {
 
     @Override
     public void loadMovies() {
+        moviesView.showLoading(true);
         dataManager.getMovies(new RemoteCallback<MovieResponse>() {
             @Override
             public void onSuccess(MovieResponse response) {
                 for (Movie movie : response.getMovies()){
                     Log.e(TAG, "onSuccess: " + movie.toString() );
                 }
+                moviesView.showLoading(false);
                 moviesView.showMovies(response.getMovies());
             }
 
             @Override
             public void onFailure(Throwable throwable) {
-
+                moviesView.showLoading(false);
             }
 
             @Override
             public void onUnauthorized() {
-
+                moviesView.showLoading(false);
             }
         });
 
