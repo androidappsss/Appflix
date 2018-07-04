@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,9 +24,8 @@ import br.com.lzacheu.appflix.model.Movie;
  */
 public class MoviesFragment extends Fragment implements MoviesContract.View {
 
-    private RecyclerView recyclerView;
+    private static final int NUMBER_COLUMN = 2;
     private MoviesAdapter moviesAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     private MoviesContract.Presenter moviesPresenter;
 
@@ -50,10 +50,10 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movies_fragment, container, false);
-        recyclerView =  rootView.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
         progressBar = rootView.findViewById(R.id.progressBar);
 
-        layoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), NUMBER_COLUMN);
         recyclerView.setLayoutManager(layoutManager);
 
         moviesAdapter = new MoviesAdapter(new ArrayList<Movie>(Collections.EMPTY_LIST));
