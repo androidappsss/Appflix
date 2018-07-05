@@ -1,5 +1,6 @@
 package br.com.lzacheu.appflix.movies;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ import java.util.List;
 
 import br.com.lzacheu.appflix.R;
 import br.com.lzacheu.appflix.model.Movie;
+import br.com.lzacheu.appflix.utils.Constants;
 
 /**
  * Created by luiszacheu on 22/06/18.
@@ -31,6 +35,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     private ProgressBar progressBar;
 
+    private RecyclerView recyclerView;
 
     public MoviesFragment() {
 
@@ -50,13 +55,13 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movies_fragment, container, false);
-        RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
+        recyclerView = rootView.findViewById(R.id.recycler_view);
         progressBar = rootView.findViewById(R.id.progressBar);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), NUMBER_COLUMN);
         recyclerView.setLayoutManager(layoutManager);
 
-        moviesAdapter = new MoviesAdapter(new ArrayList<Movie>(Collections.EMPTY_LIST));
+        moviesAdapter = new MoviesAdapter(getContext(), new ArrayList<Movie>(Collections.EMPTY_LIST));
         recyclerView.setAdapter(moviesAdapter);
 
         moviesPresenter = new MoviesPresenter(this);
@@ -83,6 +88,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public void showMovies(List<Movie> movies) {
         moviesAdapter.addMovies(movies);
+        runLayoutAnimation(recyclerView);
     }
 
     @Override
@@ -93,5 +99,16 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public void setPresenter(MoviesContract.Presenter presenter) {
         moviesPresenter = presenter;
+    }
+
+    private void runLayoutAnimation(final RecyclerView recyclerView){
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(context,
+                R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
+
     }
 }

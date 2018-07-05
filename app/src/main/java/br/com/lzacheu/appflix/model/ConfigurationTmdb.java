@@ -7,21 +7,9 @@ import java.util.List;
  */
 public class ConfigurationTmdb {
 
-    private static ConfigurationTmdb instance;
-
     private ImagesTmdb images;
     private List<String> changeKeys;
 
-    private ConfigurationTmdb() {
-    }
-
-    public ConfigurationTmdb getInstance(){
-        if (instance == null){
-            instance =  new ConfigurationTmdb();
-        }
-
-        return instance;
-    }
 
     public ImagesTmdb getImages() {
         return images;
@@ -46,4 +34,6 @@ public class ConfigurationTmdb {
                 ", changeKeys=" + changeKeys +
                 '}';
     }
+
+
 }

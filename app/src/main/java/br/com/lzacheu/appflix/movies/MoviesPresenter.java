@@ -1,11 +1,8 @@
 package br.com.lzacheu.appflix.movies;
 
-import android.util.Log;
-
 import br.com.lzacheu.appflix.data.DataManager;
 import br.com.lzacheu.appflix.data.network.RemoteCallback;
 import br.com.lzacheu.appflix.data.network.model.MovieResponse;
-import br.com.lzacheu.appflix.model.Movie;
 
 /**
  * Created by luiszacheu on 22/06/18.
@@ -27,12 +24,10 @@ public class MoviesPresenter implements MoviesContract.Presenter {
         dataManager.getMovies(new RemoteCallback<MovieResponse>() {
             @Override
             public void onSuccess(MovieResponse response) {
-                for (Movie movie : response.getMovies()){
-                    Log.e(TAG, "onSuccess: " + movie.toString() );
-                }
                 moviesView.showLoading(false);
                 moviesView.showMovies(response.getMovies());
             }
+
 
             @Override
             public void onFailure(Throwable throwable) {

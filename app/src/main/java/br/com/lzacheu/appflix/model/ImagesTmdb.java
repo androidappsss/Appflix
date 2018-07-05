@@ -21,10 +21,10 @@ class ImagesTmdb {
     @SerializedName("logo_sizes")
     private List<String> logoSizes;
 
-    @SerializedName("posterSizes")
+    @SerializedName("poster_sizes")
     private List<String> posterSizes;
 
-    @SerializedName("profileSizes")
+    @SerializedName("profile_sizes")
     private List<String> profileSizes;
 
 

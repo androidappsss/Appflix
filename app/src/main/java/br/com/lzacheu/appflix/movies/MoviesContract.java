@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.lzacheu.appflix.base.BasePresenter;
 import br.com.lzacheu.appflix.base.BaseView;
+import br.com.lzacheu.appflix.model.ConfigurationTmdb;
 import br.com.lzacheu.appflix.model.Movie;
 
 /**
