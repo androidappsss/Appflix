@@ -104,7 +104,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private void runLayoutAnimation(final RecyclerView recyclerView){
         final Context context = recyclerView.getContext();
         final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(context,
-                R.anim.layout_animation_fall_down);
+                R.anim.grid_layout_animation_from_bottom);
 
         recyclerView.setLayoutAnimation(controller);
         recyclerView.getAdapter().notifyDataSetChanged();
